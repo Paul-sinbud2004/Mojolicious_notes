@@ -20,7 +20,7 @@ sub alreadyLoggedIn{
 
 sub displayLogin{
    my $self = shift;
-   #if( &alreadyLoggedIn($self) ){   ##This statement leads to Error, but seems good logically.
+   #if( &alreadyLoggedIn($self) ){   ##This statement leads to Error, but seems good logically. Maybe Line 17 conflicts with line 27.
    if($self->session('is_auth')){
       &welcome($self);
    }else{
