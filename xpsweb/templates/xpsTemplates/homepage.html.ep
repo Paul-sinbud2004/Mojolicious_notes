@@ -2,5 +2,5 @@
 % title '首页';
   <a href="/logout">登出</a>
   <h1><%= $msg %></h1>
-  <h5 class="w3-padding-32">这是我的个人站点。请<a href="#">点此</a>留言。
+  <h5 class="w3-padding-32">这是我的个人站点。请<a href="/testimonials">点此</a>留言。
 </h5>

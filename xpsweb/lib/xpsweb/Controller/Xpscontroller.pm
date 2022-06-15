@@ -9,11 +9,11 @@ sub welcome{
 }
 
 #检查是否登录，如无跳转到登录页面
-sub alreadyLoggedIn{
+sub alreadyLoggedIn {
     my $self = shift;
     if($self->session('is_auth')){
       return 1;
-    }
+    };
     $self->render(template => "xpsTemplates/login", error_message=>"未登录，请登录后访问此页面");
     return 0;
 }
@@ -29,7 +29,7 @@ sub displayLogin{
 }
 
 #用户名与密码合法性检查
-sub validUserCheck{
+sub validUserCheck {
     my $self = shift;
     #假定一组用户
     my %validUsers = ("JANE"=>"w123",
@@ -62,10 +62,31 @@ sub logout{
     $self->render(template => "xpsTemplates/logout");
 }
 
-#404
-#sub missing{
- #   my $self = shift;
-  #  $self->render(template => "xpsTemplates/not_found");
-#}
+#将感谢信加载到模板页面
+sub loadTestimonials{
+   my $self = shift;
+   my $all_testimonials_html;
+
+   foreach my $all_testimonials (@{$self->dbhandle->fetch_all_testimonials}){
+      $all_testimonials_html .= "<tr><td>".
+           $all_testimonials->{testimonial}.
+           "</br></br><div style='test-align:right;'><i>".
+            $all_testimonials->{published_by}.
+            "</br>".
+            $all_testimonials->{published_on}.
+            "</i></div></td></tr>";
+   }
+   $self->render(template=>'xpsTemplates/managetestimonials',msg=>'查看感谢信',alltestimonials=>$all_testimonials_html);
+}
+
+#提交感谢信
+sub saveTestimonial{
+   my $self = shift;
+   my $new_testimonial = $self->param('userReview');
+   my $user = $self->session('username');
+
+   $self->dbhandle->publish_testimonial($new_testimonial,$user);
+   &loadTestimonials($self);
+}
 
 1;
