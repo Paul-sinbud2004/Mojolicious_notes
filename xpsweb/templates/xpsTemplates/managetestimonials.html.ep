@@ -1,0 +1,16 @@
+% layout 'master';
+% title '留言页面';
+<a href="/">首页</a>&nbsp;&nbsp;
+<a href="/logout">登出</a>
+
+<h1><%= $msg %></h1>
+
+<center>
+<form action="/testimonials" method="post">
+
+  <textarea id="userReview" name="userReview" rows="8" cols="50">请在此处书写推荐书</textarea></br>
+  <input type="reset" value="清空">
+  <input type="submit" value="发布">
+
+</form>
+</center>

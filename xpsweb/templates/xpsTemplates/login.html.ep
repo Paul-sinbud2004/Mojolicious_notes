@@ -1,0 +1,25 @@
+% layout 'master';
+% title '登录页面';
+
+<center>
+<h1>请登录后继续访问页面</h1>
+
+<h6>
+<!--错误提示-->
+<font color=red>
+<% if($error_message){ %>
+<%= $error_message %>
+<% } %>
+</font>
+</h6>
+
+<form action="/login" method="post">
+
+    <b>用户名</b><input type="text" name="username" required></br>
+    <b>密　码</b><input type="password" name="pass" required></br>
+
+    <input type="submit" value="确定">
+    <input type="reset" value="重置" />
+
+</form>
+</center>
