@@ -32,9 +32,9 @@ sub displayLogin{
 sub validUserCheck{
     my $self = shift;
     #假定一组用户
-    my %validUsers = ("JANE"=>"welcom123",
-               "PAUL"=>"asdf1234",
-		         "TOM"=>"test123",    
+    my %validUsers = ("JANE"=>"w123",
+               "PAUL"=>"a1234",
+		         "TOM"=>"t123",    
                     );
     #获取页面上填入的信息
     my $user = uc $self->param('username');
